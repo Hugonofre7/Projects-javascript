@@ -1,0 +1,26 @@
+@keyframes slideright {
+    from {
+        background-position: 70000%;
+    }
+    to {
+        background-position: 0%;
+    }
+}
+
+#desert {
+    position: absolute;
+    background-image: url("desert.png");
+    height: 400px;
+    width: 100%;
+    animation: slideright  1000s infinite linear;
+}
+
+.dino {
+    background-image: url("dino.png");
+    height: 65px;
+    width: 60px;
+    bottom: 0;
+    position: absolute;
+    bottom: 0;
+}
+
