@@ -3,10 +3,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgb(51, 84, 84);
+    background-color: rgb(4, 24, 24);
 }
 .calculator {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(220, 216, 216);
     padding: 20px;
     border-radius: 10px;
 
@@ -14,7 +14,7 @@ body {
 
 .screen {
     width: 224px;
-    background-color: rgb(176, 205, 176);
+    background-color: rgb(203, 241, 203);
     font-size: 40px;
     text-align: end;
     padding: 4px;
@@ -40,18 +40,18 @@ button {
 }
 
 button:hover {
-    background-color: rgb(111, 110, 100);
+    background-color: rgb(8, 8, 8);
 }
 
 button:active {
     background-color: rgb(232, 232, 232);
 }
 
-equals {
+#equals {
     background-color: rgb(218, 3, 3);
 }
 
-equals:hover {
+#equals:hover {
     background-color: rgb(198, 1, 1);
 }
 
@@ -62,7 +62,7 @@ equals:hover {
 }
 
 #clear:hover {
-    background-color: rgb(252, 201, 17);
+    background-color: rgb(248, 194, 0);
 }
 
 
