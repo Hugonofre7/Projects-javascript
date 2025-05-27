@@ -27,8 +27,10 @@ document.querySelectorAll('form').forEach(form => {
         });
 
         if (isValid) {
-            alert('Formulario válido. Enviando datos...'); // Reemplaza con PHP luego
-            // this.submit(); // Descomenta cuando tengas PHP listo
+            fetch('process.php', {
+            method: 'POST',
+            body: new FormData(formulario)
+            });
         }
     });
 });
