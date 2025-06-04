@@ -39,7 +39,7 @@ header {
     padding: 15px 15px;
     text-decoration: none;
     font-family: sans-serif;
-    background-color: #0040ff;
+    background-color: #535762;
 }
 
 .container {
@@ -55,7 +55,6 @@ header {
     font-size: 30px;
     font-weight: bold;
 }
-
 
 .container-child {
     color: white;
@@ -88,20 +87,28 @@ input {
 button {
     font-size: 1rem;
     font-family: 'Baloo Tamma 2', cursive;
-    width: 100%;
+    width: 80%;
     max-width: 800px;
     border-radius: 50px;
+    padding: 10px 0px;
     border: none;
     color: white;
-    background-color: #e84118;
+    background-color: #f43303;
+    display: block;
+    margin: 0 auto;
 }
 
 p {
     text-align: center;
 }
 
+p a {
+    color: #060100; 
+    text-decoration: none; 
+}
+
 .data-collect {
-    width: 20%;
+    width: 30%;
     max-width: 200px;
     padding: 0px 10px;
     margin-top: 30px;
