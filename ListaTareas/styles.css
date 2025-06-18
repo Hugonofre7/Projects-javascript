@@ -2,16 +2,22 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #f4f4f9;
+  background-image: url('imagenes/to-do-list.png'); 
+  background-size: cover; 
+  background-position: center; 
+  background-attachment: fixed; 
+  background-repeat: no-repeat; 
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .container {
   max-width: 500px;
-  margin: 0 auto;
-  background: white;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 h1 {
