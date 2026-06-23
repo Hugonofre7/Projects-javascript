@@ -13,22 +13,22 @@ const serviceRegistry = {
         },
         {
             id: 2,
-            name: "auth-service",
+            name: "user-service",
             port: 3008,
-            status: "active",
+            status: "inactive",
             metadata: {
                 version: "1.0.1",
-                region: "us-east"
+                region: "us-west"
             }
         },
         {
             id: 3,
-            name: "auth-service",
+            name: "payment-service",
             port: 3009,
             status: "active",
             metadata: {
                 version: "1.0.2",
-                region: "us-east"
+                region: "us-central"
             }
         }
     ]
