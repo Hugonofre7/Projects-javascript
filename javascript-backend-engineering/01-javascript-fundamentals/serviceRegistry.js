@@ -55,8 +55,11 @@ function getServiceCount(registry) {
 
 }
 
-// console.log(JSON.stringify(serviceRegistry, null, 2))
+console.log('=== Registry completo ===')
+console.log(JSON.stringify(serviceRegistry, null, 2))
 
-// console.log(getActiveServices(serviceRegistry))
+console.log('=== Servicios activos ===')
+console.log(getActiveServices(serviceRegistry))
 
+console.log('=== Conteo ===')
 console.log(getServiceCount(serviceRegistry))
