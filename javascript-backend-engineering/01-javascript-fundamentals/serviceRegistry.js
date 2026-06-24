@@ -34,4 +34,12 @@ const serviceRegistry = {
     ]
 };
 
-console.log(JSON.stringify(serviceRegistry, null, 2))
+function getActiveServices(registry) {
+    return registry.services.filter(service => service.status === "active");
+
+}
+
+
+// console.log(JSON.stringify(serviceRegistry, null, 2))
+
+console.log(getActiveServices(serviceRegistry))
