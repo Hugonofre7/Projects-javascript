@@ -40,6 +40,23 @@ function getActiveServices(registry) {
 }
 
 
+function getServiceCount(registry) {
+
+    return registry.services.reduce((acumulador, servicio) => {
+
+        acumulador[servicio.status] = (acumulador[servicio.status] || 0) + 1;
+
+        return acumulador;
+
+    }, {
+        active: 0,
+        inactive: 0
+    });
+
+}
+
 // console.log(JSON.stringify(serviceRegistry, null, 2))
 
-console.log(getActiveServices(serviceRegistry))
+// console.log(getActiveServices(serviceRegistry))
+
+console.log(getServiceCount(serviceRegistry))
