@@ -5,7 +5,7 @@ function createPipeline(middlewares) {
     return function(request) {
 
         return middlewares.reduce((acc, middleware) => {
-
+            if (acc.error) return acc;
             return middleware(acc);
 
         }, request);
@@ -14,28 +14,44 @@ function createPipeline(middlewares) {
 
 }
 
+function authMiddleware(req) {
+    if (!req.token) {
+        return {
+            error: 'Unauthorized',
+            status: 401
+        };
+    }
+
+    return {
+        ...req,
+        authenticated: true
+    };
+}
+
 function middleware1(req) {
-    req.step1 = true;
-    return req;
+    return { ...req, step1: true };
 }
 
 function middleware2(req) {
-    req.step2 = true;
-    return req;
+    return { ...req, step2: true };
 }
 
 function middleware3(req) {
-    req.step3 = true;
-    return req;
+    return { ...req, step3: true };
 }
 
+
 const pipeline = createPipeline([
+    authMiddleware,
     middleware1,
     middleware2,
     middleware3
 ]);
 
 const request = {};
+const requestConToken = { token: 'abc123' };
 
 console.log(pipeline(request));
+console.log(pipeline(requestConToken));
+
 
