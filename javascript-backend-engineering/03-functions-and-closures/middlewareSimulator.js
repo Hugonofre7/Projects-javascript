@@ -1,4 +1,12 @@
+function createLogger(level) {
+    return function(message) {
+        console.log(`[${level}] ${message}`);
+    };
+}
 
+const log = createLogger('INFO');
+const errorLogger = createLogger('ERROR')
+const debugLogger = createLogger('DEBUG')
 
 function createPipeline(middlewares) {
 
@@ -14,38 +22,51 @@ function createPipeline(middlewares) {
 
 }
 
-function authMiddleware(req) {
-    if (!req.token) {
-        return {
-            error: 'Unauthorized',
-            status: 401
-        };
-    }
+function createAuthMiddleware(logger) {
+    return function(req) {
+        logger('authMiddleware ejecutado');
 
-    return {
-        ...req,
-        authenticated: true
+        if (!req.token) {
+            return {
+                error: 'Unauthorized',
+                status: 401
+            };
+        }
+
+        return {
+            ...req,
+            authenticated: true
+        };
     };
 }
 
-function middleware1(req) {
-    return { ...req, step1: true };
+function createMiddleware1(logger) {
+    return function(req) {
+        logger('middleware1 ejecutado');
+        return { ...req, step1: true };
+    };
 }
 
-function middleware2(req) {
-    return { ...req, step2: true };
+function createMiddleware2(logger) {
+    return function(req) {
+        logger('middleware2 ejecutado');
+        return { ...req, step2: true };
+    };
 }
 
-function middleware3(req) {
-    return { ...req, step3: true };
+function createMiddleware3(logger) {
+    return function(req) {
+        logger('middleware3 ejecutado');
+        return { ...req, step3: true };
+    };
 }
 
 
 const pipeline = createPipeline([
-    authMiddleware,
-    middleware1,
-    middleware2,
-    middleware3
+    createAuthMiddleware(log),
+    createMiddleware1(log),
+    createMiddleware2(log),
+    createMiddleware3(log)
 ]);
 
 const request = {};
@@ -53,5 +74,6 @@ const requestConToken = { token: 'abc123' };
 
 console.log(pipeline(request));
 console.log(pipeline(requestConToken));
+
 
 
