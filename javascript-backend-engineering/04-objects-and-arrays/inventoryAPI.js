@@ -27,6 +27,10 @@ function agregarProducto(inventory, producto) {
     return [...inventory, producto];
 }
 
+function buscarPorId(inventory, id) {
+    return inventory.find(item => item.id === id) || null;
+}
+
 const nuevoProducto = {
     id: 4,
     nombre: 'Mouse',
@@ -43,3 +47,7 @@ console.log(inventory.length)
 console.log('=== Inventario actualizado ===')
 console.log(inventarioActualizado.length)
 console.log(inventarioActualizado)
+
+console.log('=== buscarPorId ===')
+console.log(buscarPorId(inventory, 1))   // existe
+console.log(buscarPorId(inventory, 99))  // no existe
