@@ -43,6 +43,10 @@ function actualizarProducto(inventory, id, cambios) {
     });
 }
 
+function eliminarProducto(inventory, id) {
+    return inventory.filter(producto => producto.id !== id);
+}
+
 const nuevoProducto = {
     id: 4,
     nombre: 'Mouse',
@@ -67,3 +71,7 @@ console.log(buscarPorId(inventory, 99))  // no existe
 console.log('=== actualizarProducto ===')
 console.log(actualizarProducto(inventory, 1, { precio: 16000, stock: 3 }))
 console.log(actualizarProducto(inventory, 99, { precio: 16000 })) // id no existe
+
+console.log('=== eliminarProducto ===')
+console.log(eliminarProducto(inventory, 2))  // elimina Teclado
+console.log(eliminarProducto(inventory, 99)) // id no existe, sin cambios
