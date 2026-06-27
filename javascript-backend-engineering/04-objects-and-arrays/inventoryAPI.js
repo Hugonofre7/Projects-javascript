@@ -31,6 +31,18 @@ function buscarPorId(inventory, id) {
     return inventory.find(item => item.id === id) || null;
 }
 
+function actualizarProducto(inventory, id, cambios) {
+    return inventory.map(producto => {
+        if (producto.id === id) {
+            return {
+                ...producto,
+                ...cambios
+            };
+        }
+        return producto;
+    });
+}
+
 const nuevoProducto = {
     id: 4,
     nombre: 'Mouse',
@@ -51,3 +63,7 @@ console.log(inventarioActualizado)
 console.log('=== buscarPorId ===')
 console.log(buscarPorId(inventory, 1))   // existe
 console.log(buscarPorId(inventory, 99))  // no existe
+
+console.log('=== actualizarProducto ===')
+console.log(actualizarProducto(inventory, 1, { precio: 16000, stock: 3 }))
+console.log(actualizarProducto(inventory, 99, { precio: 16000 })) // id no existe
