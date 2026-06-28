@@ -35,9 +35,26 @@ function filterByLevel(logs, level) {
     return logs.filter(log => log.level === level);
 }
 
+function formatLogs(logs) {
+    return logs.map(log => `[${log.level}] ${log.timestamp} - ${log.message}`); 
+}
+
+function countByLevel(logs) {
+    return logs.reduce((acc, log) => {
+        acc[log.level] = (acc[log.level] || 0) + 1;
+        return acc;
+    }, {});
+
+}
+
 console.log('=== filterByLevel ERROR ===')
 console.log(filterByLevel(logs, 'ERROR'))
 
 console.log('=== filterByLevel INFO ===')
 console.log(filterByLevel(logs, 'INFO'))
 
+console.log('=== formatLogs ERROR ===')
+console.log(formatLogs(filterByLevel(logs, 'ERROR')))
+
+console.log('=== countByLevel ===')
+console.log(countByLevel(logs))
