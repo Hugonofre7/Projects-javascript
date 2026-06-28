@@ -47,6 +47,13 @@ function countByLevel(logs) {
 
 }
 
+function processLogs(logs) {
+    return logs
+        .filter(log => log.level === 'ERROR')
+        .map(log => `[${log.level}] ${log.timestamp} - ${log.message}`);
+}
+
+
 console.log('=== filterByLevel ERROR ===')
 console.log(filterByLevel(logs, 'ERROR'))
 
@@ -58,3 +65,6 @@ console.log(formatLogs(filterByLevel(logs, 'ERROR')))
 
 console.log('=== countByLevel ===')
 console.log(countByLevel(logs))
+
+console.log('=== processLogs ===')
+console.log(processLogs(logs))
