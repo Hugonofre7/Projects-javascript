@@ -45,6 +45,31 @@ class DatabaseConnection extends Connection {
     }
 }
 
+function systemReport(systemComponents) {
+
+    return systemComponents.map(component => {
+
+        if (component instanceof User) {
+            return component.describe();
+        }
+
+        if (component instanceof Service) {
+            return `Service healthy: ${component.isHealthy()}`;
+        }
+
+        if (component instanceof DatabaseConnection) {
+            return component.connect();
+        }
+
+    });
+
+}
+
+const systemComponents = [
+    new User(1, 'Hugo', 'admin'),
+    new Service('API', 3000, 'active'),
+    new DatabaseConnection('localhost', 'users')
+];
 
 const user1 = new User(1, 'Hugo', 'admin')
 console.log(user1.describe())
@@ -65,3 +90,5 @@ const db1 = new DatabaseConnection('localhost:3306', 'epidemiologia')
 console.log(db1.connect())
 console.log(db1 instanceof Connection)
 console.log(db1 instanceof DatabaseConnection)
+
+console.log(systemReport(systemComponents))
