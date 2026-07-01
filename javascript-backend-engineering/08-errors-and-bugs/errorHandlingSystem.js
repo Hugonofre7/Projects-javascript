@@ -48,10 +48,68 @@ function findUser(users, id) {
     return user;
 }
 
+function handleError(e) {
+
+    if (e instanceof ValidationError) {
+        return {
+            status: 400,
+            error: e.message
+        };
+    }
+
+    if (e instanceof NotFoundError) {
+        return {
+            status: 404,
+            error: e.message
+        };
+    }
+
+    if (e instanceof DatabaseError) {
+        return {
+            status: 500,
+            error: e.message
+        };
+    }
+
+    return {
+        status: 500,
+        error: 'Error interno del servidor'
+    };
+}
+
+function queryDatabase(query, shouldFail) {
+
+    let connection = null;
+
+    try {
+
+        connection = 'conectado';
+
+        if (shouldFail) {
+            throw new DatabaseError('Fallo en la consulta');
+        }
+
+        return {
+            result: `Resultado de: ${query}`
+        };
+
+    } catch(e) {
+
+        return handleError(e);
+
+    } finally {
+
+        connection = null;
+        console.log('Conexión cerrada');
+
+    }
+
+}
 const users = [
     { id: 1, name: 'Hugo', role: 'admin' },
     { id: 2, name: 'Ana', role: 'user' }
 ];
+
 
 const e1 = new ValidationError('El campo email es requerido')
 const e2 = new NotFoundError('Usuario no encontrado')
@@ -83,3 +141,27 @@ try {
 } catch (e) {
     console.log(`${e.name}: ${e.message}`)
 }
+
+console.log('=== handleError ===')
+
+try {
+    findUser(users, 'abc')
+} catch (e) {
+    console.log(handleError(e))
+}
+
+try {
+    findUser(users, 99)
+} catch (e) {
+    console.log(handleError(e))
+}
+
+try {
+    throw new Error('algo inesperado')
+} catch (e) {
+    console.log(handleError(e))
+}
+
+console.log('=== queryDatabase ===')
+console.log(queryDatabase('SELECT * FROM users', false))
+console.log(queryDatabase('SELECT * FROM users', true))
