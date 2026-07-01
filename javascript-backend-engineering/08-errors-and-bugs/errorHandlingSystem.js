@@ -105,6 +105,28 @@ function queryDatabase(query, shouldFail) {
     }
 
 }
+
+function processRequest(users, userId, query) {
+
+    try {
+
+        const user = findUser(users, userId);
+
+        const result = queryDatabase(query, false);
+
+        return {
+            user,
+            result
+        };
+
+    } catch(e) {
+
+        return handleError(e);
+
+    }
+
+}
+
 const users = [
     { id: 1, name: 'Hugo', role: 'admin' },
     { id: 2, name: 'Ana', role: 'user' }
@@ -165,3 +187,8 @@ try {
 console.log('=== queryDatabase ===')
 console.log(queryDatabase('SELECT * FROM users', false))
 console.log(queryDatabase('SELECT * FROM users', true))
+
+console.log('=== processRequest ===')
+console.log(processRequest(users, 1, 'SELECT * FROM orders'))
+console.log(processRequest(users, 99, 'SELECT * FROM orders'))
+console.log(processRequest(users, 'abc', 'SELECT * FROM orders'))
