@@ -33,8 +33,39 @@ class DatabaseError extends Error {
 
 }
 
+function handleError(e) {
+
+    if (e instanceof ValidationError) {
+        return {
+            status: 400,
+            error: e.message
+        };
+    }
+
+    if (e instanceof NotFoundError) {
+        return {
+            status: 404,
+            error: e.message
+        };
+    }
+
+    if (e instanceof DatabaseError) {
+        return {
+            status: 500,
+            error: e.message
+        };
+    }
+
+    return {
+        status: 500,
+        error: 'Error interno del servidor'
+    };
+
+}
+
 module.exports = {
     ValidationError,
     NotFoundError,
-    DatabaseError
+    DatabaseError,
+    handleError
 };
